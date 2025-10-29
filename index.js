@@ -55,10 +55,10 @@ module.exports = function svgLoader (options = {}) {
         id: JSON.stringify(id),
         source: svg,
         filename: path,
-        transformAssetUrls: false
+        transformAssetUrls: false,
+        compilerOptions: { mode: 'function' },
       })
-
-      return `${code}\nexport default { render: render }`
+      return `export default { render: (() => {${code}})()}`
     }
   }
 }
